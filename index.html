@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#18172d" />
+  <meta name="description" content="LEE AN GAMES의 고양이 퍼즐 게임, 냥냥냥 공식 개발자 웹사이트" />
+  <title>냥냥냥 | LEE AN GAMES</title>
+  <style>
+    :root { color-scheme: dark; --navy: #18172d; --navy2: #262441; --cream: #fff6ec; --pink: #ff87af; --pink2: #f6afc9; --mint: #b7eddb; --slate: #c6c4d5; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--navy); color: var(--cream); font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; line-height: 1.65; }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 36px)); margin: 0 auto; }
+    header { position: relative; z-index: 2; border-bottom: 1px solid rgba(255,255,255,.1); background: #18172de8; }
+    header .wrap { min-height: 74px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .brand { text-decoration: none; display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 900; letter-spacing: .065em; }
+    .brand-mark { display: grid; place-items: center; border-radius: 14px; background: #fdf1e2; color: #231d2d; width: 42px; height: 42px; font-size: 23px; box-shadow: 0 5px 0 #eb8da9; }
+    .brand b { color: var(--pink); }
+    nav { display: flex; gap: 22px; font-size: 13px; font-weight: 750; letter-spacing: .04em; }
+    nav a { text-decoration: none; color: #e1deed; }
+    nav a:hover, nav a:focus-visible { color: var(--pink); }
+    main { overflow: hidden; }
+    .hero { position: relative; padding: 88px 0 100px; }
+    .hero::before { content: ''; position: absolute; width: 650px; height: 650px; top: -330px; right: -220px; background: radial-gradient(circle,#e35a9560,transparent 68%); pointer-events: none; }
+    .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 38px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; padding: 7px 14px; border: 1px solid #e78db080; border-radius: 999px; color: #ffd7e5; background: #f58ab112; letter-spacing: .03em; }
+    .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: #ff88af; box-shadow: 0 0 14px #ff88af; }
+    h1 { font-size: clamp(68px, 9vw, 126px); line-height: 1.03; margin: 25px 0 22px; letter-spacing: -.085em; color: var(--cream); }
+    h1 span { color: var(--pink); }
+    .hero-lead { font-size: clamp(18px, 2.3vw, 24px); line-height: 1.42; font-weight: 800; margin: 0 0 20px; }
+    .hero-body { font-size: 15px; color: var(--slate); max-width: 470px; margin: 0 0 28px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+    .tag { border: 1px solid #76708c80; color: #e8dfee; border-radius: 9px; font-size: 12px; font-weight: 700; padding: 6px 10px; }
+    .visual { min-height: 392px; position: relative; display: grid; place-items: center; }
+    .visual-board { width: min(100%, 422px); aspect-ratio: 1.02; background: linear-gradient(145deg, #ecb4cf, #aa83b5); border-radius: 36px; border: 7px solid #fce4dd; transform: rotate(-6deg); padding: 24px; box-shadow: 20px 25px 0 #0b0b16, 0 26px 70px #07070fbb; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .tile { display: grid; place-items: center; font-size: clamp(40px, 5.5vw, 64px); border-radius: 23px; background: #fff7ec; box-shadow: 0 7px 0 #b26e91; text-shadow: 0 2px 0 #fff; transform: translateZ(0); }
+    .tile:nth-child(2), .tile:nth-child(4), .tile:nth-child(9) { background: #dff8e8; }
+    .tile:nth-child(5) { background: #ffe9ac; }
+    .sparkle { position: absolute; font-size: 42px; color: var(--mint); text-shadow: 0 3px #332c4a; }
+    .s1 { top: 0; right: 0; } .s2 { left: 0; bottom: 8px; font-size: 29px; color: #fdeb9c; }
+    .section { padding: 66px 0; }
+    .section-heading { font-size: 12px; letter-spacing: .23em; color: var(--pink); font-weight: 900; }
+    .section h2 { margin: 10px 0 26px; font-size: clamp(28px, 4vw, 42px); line-height: 1.2; letter-spacing: -.05em; }
+    .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+    .feature { padding: 29px; border-radius: 24px; border: 1px solid #72647b55; background: linear-gradient(145deg, #2c2a47, #25233c); min-height: 210px; }
+    .feature .pictogram { display: block; font-size: 37px; margin-bottom: 13px; }
+    .feature h3 { font-size: 17px; margin: 0 0 7px; }
+    .feature p { font-size: 13px; color: var(--slate); margin: 0; }
+    .about { margin: 54px 0 86px; padding: 35px 40px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; border-radius: 25px; background: #f5e7d8; color: #221a33; }
+    .about h2 { margin: 0 0 7px; font-size: 25px; letter-spacing: -.02em; }
+    .about p { max-width: 660px; margin: 0; font-size: 14px; color: #534c62; }
+    .label { display: inline-block; padding: 7px 12px; background: #26223d; color: #fff6ec; border-radius: 9px; font-size: 13px; font-weight: 800; }
+    footer { border-top: 1px solid #ffffff22; padding: 30px 0 38px; color: #bbb5cf; font-size: 12px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    footer a { text-underline-offset: 3px; }
+    @media (max-width: 720px) { header .wrap { min-height: 67px; } nav { gap: 14px; font-size: 12px; } .brand { font-size: 14px; gap: 9px; } .brand-mark { width: 35px; height: 35px; font-size: 19px; border-radius: 10px; } .hero { padding: 52px 0 60px; } .hero .wrap { grid-template-columns: 1fr; gap: 34px; } .hero-body { font-size: 14px; } .visual { min-height: 320px; } .visual-board { width: min(90%, 340px); gap: 9px; padding: 17px; border-radius: 29px; } .tile { border-radius: 16px; font-size: 47px; } .section { padding: 36px 0; } .features { grid-template-columns: 1fr; gap: 10px; } .feature { min-height: auto; padding: 23px; } .about { padding: 28px; margin: 32px 0 64px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="LEE AN GAMES 홈"><span class="brand-mark" aria-hidden="true">🐾</span><span>LEE AN <b>GAMES</b></span></a>
+      <nav aria-label="메인 메뉴"><a href="#game">게임</a><a href="#about">개발자</a><a href="/app-ads.txt">광고 정보</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="game">
+      <div class="wrap">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> ANDROID PUZZLE GAME</div>
+          <h1>냥냥<span>냥</span></h1>
+          <p class="hero-lead">귀여운 고양이 세 마리,<br />톡톡 터지는 퍼즐의 재미!</p>
+          <p class="hero-body">고양이 블록을 맞추며 차근차근 스테이지를 공략하는 모바일 퍼즐 게임. 눈길을 끄는 고양이들과 함께 나만의 퍼즐 시간을 즐겨보세요.</p>
+          <div class="tags"><span class="tag">🐱 고양이 퍼즐</span><span class="tag">🧩 스테이지 도전</span><span class="tag">📱 Android</span></div>
+        </div>
+        <div class="visual" aria-label="고양이 퍼즐 블록 디자인">
+          <div class="visual-board" aria-hidden="true">
+            <div class="tile">🐱</div><div class="tile">🐈</div><div class="tile">😺</div>
+            <div class="tile">🐈</div><div class="tile">⭐</div><div class="tile">🐱</div>
+            <div class="tile">😺</div><div class="tile">🐱</div><div class="tile">🐈</div>
+          </div>
+          <span class="sparkle s1" aria-hidden="true">✦</span><span class="sparkle s2" aria-hidden="true">✳</span>
+        </div>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="features-title">
+      <div class="wrap">
+        <span class="section-heading">PLAY & ENJOY</span>
+        <h2 id="features-title">작은 퍼즐에 가득한 즐거움</h2>
+        <div class="features">
+          <article class="feature"><span class="pictogram" aria-hidden="true">🐾</span><h3>고양이 친구들</h3><p>개성 있는 고양이 블록을 맞추는 즐거운 순간.</p></article>
+          <article class="feature"><span class="pictogram" aria-hidden="true">🧩</span><h3>퍼즐 스테이지</h3><p>한 판씩 도전하며 자신의 속도로 진행하는 퍼즐.</p></article>
+          <article class="feature"><span class="pictogram" aria-hidden="true">✨</span><h3>간편한 즐거움</h3><p>휴대전화로 즐길 수 있는 캐주얼 퍼즐 게임.</p></article>
+        </div>
+        <div class="about" id="about">
+          <div><h2>LEE AN GAMES</h2><p>모바일 게임을 만드는 인디 개발자 LEE AN의 공식 개발자 웹사이트입니다. 이 사이트에서는 게임 소개와 광고 판매자 정보를 제공합니다.</p></div>
+          <span class="label">INDEPENDENT GAME DEVELOPER</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap"><span>© 2026 LEE AN GAMES. All rights reserved.</span><span><a href="/app-ads.txt">app-ads.txt · 광고 판매자 정보</a></span></div>
+  </footer>
+</body>
+</html>
